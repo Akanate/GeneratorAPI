@@ -19,17 +19,11 @@ app.get('/numgen', async(req, res) => {
 app.get('/alphagen', async(req, res) => {
     try{
       const queriedAlpha = parseInt(req.query.alpha)
-      console.log('Value:',queriedAlpha)
-      const generatedArray = await alphaGenerator(queriedAlpha)
-      res.send(generatedArray)
-      res.status(202)
+      const generatedOutput = await alphaGenerator(queriedAlpha)
+      res.send(generatedOutput).status(202)
     }catch(e){
-      console.log('hit')
-      console.log(e)
-      res.status(404)
+      res.send(e).status(404)
     }
-
-
 
 })
 

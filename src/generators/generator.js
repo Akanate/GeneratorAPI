@@ -16,8 +16,13 @@ module.exports = numGenerator = (num) => {
 module.exports = alphaGenerator = (alpha) => {
   return new Promise((resolve,reject) => {
   try{
-      var alphabetEnd = 65 + Number(alpha)
-      console.log(alphabetEnd)
+      var numAlpha = Number(alpha)
+      if (numAlpha > 26 || numAlpha < 1){
+        return reject({
+          'Error': 'Invalid value choose a value between 1 and 26!'
+        })
+      }
+      var alphabetEnd = 65 + numAlpha
       var generatedArray = []
       for(i = 65; i < alphabetEnd; ++i){
           generatedArray.push(String.fromCharCode(i))
@@ -25,7 +30,9 @@ module.exports = alphaGenerator = (alpha) => {
       }
       return resolve(generatedArray)
   }catch(e){
-      return reject(e)
+      return reject({
+        'Error': e
+      })
     }
   })
 }
